@@ -14,6 +14,8 @@
 		CFC07AF826D79785000CAC23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFC07AF626D79785000CAC23 /* LaunchScreen.storyboard */; };
 		CFC07B0026D79831000CAC23 /* PatientLstTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07AFF26D79831000CAC23 /* PatientLstTableViewController.swift */; };
 		CFC07B0326D79AD6000CAC23 /* NewPatientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07B0226D79AD6000CAC23 /* NewPatientsViewController.swift */; };
+		CFC07B0826D7A465000CAC23 /* localhost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07B0726D7A465000CAC23 /* localhost.swift */; };
+		CFC07B0A26D7A4D4000CAC23 /* PatientsVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		CFC07AF926D79785000CAC23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFC07AFF26D79831000CAC23 /* PatientLstTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientLstTableViewController.swift; sourceTree = "<group>"; };
 		CFC07B0226D79AD6000CAC23 /* NewPatientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatientsViewController.swift; sourceTree = "<group>"; };
+		CFC07B0726D7A465000CAC23 /* localhost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localhost.swift; sourceTree = "<group>"; };
+		CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsVIewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,9 @@
 		CFC07AEA26D79781000CAC23 /* HumanhealthMVVMPart2-1 */ = {
 			isa = PBXGroup;
 			children = (
+				CFC07B0626D7A423000CAC23 /* View Models */,
+				CFC07B0526D7A40A000CAC23 /* Models */,
+				CFC07B0426D7A3E4000CAC23 /* Localhost */,
 				CFC07B0126D79A0F000CAC23 /* Controllers */,
 				CFC07AEB26D79781000CAC23 /* AppDelegate.swift */,
 				CFC07AED26D79781000CAC23 /* SceneDelegate.swift */,
@@ -76,6 +83,29 @@
 				CFC07B0226D79AD6000CAC23 /* NewPatientsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CFC07B0426D7A3E4000CAC23 /* Localhost */ = {
+			isa = PBXGroup;
+			children = (
+				CFC07B0726D7A465000CAC23 /* localhost.swift */,
+			);
+			path = Localhost;
+			sourceTree = "<group>";
+		};
+		CFC07B0526D7A40A000CAC23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CFC07B0626D7A423000CAC23 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFC07B0A26D7A4D4000CAC23 /* PatientsVIewModel.swift in Sources */,
 				CFC07B0026D79831000CAC23 /* PatientLstTableViewController.swift in Sources */,
 				CFC07AEC26D79781000CAC23 /* AppDelegate.swift in Sources */,
 				CFC07AEE26D79781000CAC23 /* SceneDelegate.swift in Sources */,
 				CFC07B0326D79AD6000CAC23 /* NewPatientsViewController.swift in Sources */,
+				CFC07B0826D7A465000CAC23 /* localhost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
