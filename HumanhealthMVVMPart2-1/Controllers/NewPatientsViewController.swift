@@ -11,8 +11,29 @@ class NewPatientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        
+        let url = URL(string: "https://api.github.com/users/haguremon")!
+        
+        let resource =  Resource<[User]>(url: url)
+        
+      LocalHost().load(resource: resource) { result in
+        
+        print(result)
 
-        // Do any additional setup after loading the view.
+            switch result {
+
+            case .success(let patient):
+
+                print(patient)
+
+            case  .failure(let error):
+                print(error)
+
+
+            }
+        }
+        
     }
     
 
