@@ -13,17 +13,17 @@ enum NetWorkError: Error {
     case urlError
 }
 
-//enum HttpMethod: String {
-//
-//    case get = "GET"
-//    case post = "POST"
-//
-//}
+enum HttpMethod: String {
+
+    case get = "GET"
+    case post = "POST"
+
+}
 struct Resource<T: Codable> {
-    let url: URL
+    var url: URL
     //したはデフォルトの設定
-//    var httpMethod: HttpMethod = .get
-//    var body: Data? = nil
+    var httpMethod: HttpMethod = .get
+    var body: Data? = nil
 }
 
 //extension Resource {
@@ -36,14 +36,17 @@ struct Resource<T: Codable> {
     struct LocalHost {
         
         func load<T>(resource: Resource<T>, completion: @escaping (Result<T,NetWorkError>) -> Void) {
-//            var request = URLRequest(url: resource.url)
+            
 //            request.httpMethod = resource.httpMethod.rawValue
 //            request.httpBody = resource.body
 //            //json　でヘッダーが
 //            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
+       
             URLSession.shared.dataTask(with: resource.url) { data, response, error in
-                guard let data = data, error == nil else {
+                guard let data = data,
+//                      let response = response as? HTTPURLResponse ,
+//                      response.statusCode == 304,
+                      error == nil else {
                     
                     completion(.failure(.domainError))
                     return
@@ -53,11 +56,14 @@ struct Resource<T: Codable> {
             
                 let patient = try? JSONDecoder().decode(T.self, from: data)
                 
+               //print(patient)
                 if let patient = patient {
                     
-                    print(patient)
+                    DispatchQueue.main.async {
+                        completion(.success(patient))
+                    }
                    
-                    completion(.success(patient))
+                  
                 }
                 else {
                 print("test")

@@ -13,28 +13,11 @@ class NewPatientsViewController: UIViewController {
         super.viewDidLoad()
     
         
-        let url = URL(string: "https://api.github.com/users/haguremon")!
-        
-        let resource =  Resource<[User]>(url: url)
-        
-      LocalHost().load(resource: resource) { result in
-        
-        print(result)
-
-            switch result {
-
-            case .success(let patient):
-
-                print(patient)
-
-            case  .failure(let error):
-                print(error)
-
-
-            }
-        }
+     
         
     }
+    
+  
     
 
     /*

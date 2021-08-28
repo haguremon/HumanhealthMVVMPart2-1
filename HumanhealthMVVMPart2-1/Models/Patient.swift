@@ -35,19 +35,19 @@ struct Patient: Codable {
     let Height: Double
     
 }
-extension Patient {
-    //エンコードするための処理
-    //Resource<[Order]>型で返すstaticプロパティを作成
-    static var all: Resource<[Patient]> = {
-        
-        guard let url = URL(string: "http://localhost:3000/patients") else {
-            fatalError("URL is incorrect ")
-        }
-        
-        return Resource<[Patient]>(url: url)
-        
-    }()
-}
+//extension Patient {
+//    //エンコードするための処理
+//    //Resource<[Order]>型で返すstaticプロパティを作成
+//    static var all: Resource<[Patient]> = {
+//        
+//        guard let url = URL(string: "http://localhost:3000/patients") else {
+//            fatalError("URL is incorrect ")
+//        }
+//        
+//        return Resource<[Patient]>(url: url)
+//        
+//    }()
+//}
 
 struct User: Codable {
     
@@ -71,16 +71,16 @@ struct User: Codable {
     }
 }
 //https://api.github.com/users/haguremon
-extension User {
-    //エンコードするための処理
-    //Resource<[Order]>型で返すstaticプロパティを作成
-    static var all: Resource<[User]> = {
-        
-        guard let url = URL(string: "https://api.github.com/users/haguremon") else {
-            fatalError("URL is incorrect ")
-        }
-        
-        return Resource<[User]>(url: url)
-        
-    }()
-}
+//extension User {
+//    //エンコードするための処理
+//    //Resource<[Order]>型で返すstaticプロパティを作成
+//    static var all: Resource<[User]> = {
+//
+//        guard let url = URL(string: "https://api.github.com/users/haguremon") else {
+//            fatalError("URL is incorrect ")
+//        }
+//
+//        return Resource<[User]>(url: url)
+//
+//    }()
+//}

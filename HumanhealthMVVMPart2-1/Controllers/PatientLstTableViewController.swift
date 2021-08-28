@@ -9,37 +9,62 @@ import UIKit
 
 class PatientLstTableViewController: UITableViewController {
 
+    var patients = [Patient]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
+        test()
+        
     }
 
+  
+    func test(){
+        guard let url = URL(string: "http://localhost:3000/patients") else {
+            
+            fatalError("url errror")
+        }
+        
+        let resource =  Resource<[Patient]>(url: url)
+        
+      LocalHost().load(resource: resource) { result in
+        
+        print(result)
+
+            switch result {
+            case .success(let patient):
+
+                self.patients = patient
+                self.tableView.reloadData()
+
+            case  .failure(let error):
+                print(error)
+
+
+            }
+        }
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return patients.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = patients[indexPath.row].name
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
