@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct NewPatientsViewModel {
     var id: Double?
@@ -25,5 +26,21 @@ struct NewPatientsViewModel {
     
     var weight: Double?
     var height: Double?
+    
+    var bloodtypeSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: BloodType.allCases.map { $0.rawValue  })        
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        return segmentedControl
+    }()
+    
+    func setupUI(vc: NewPatientsViewController) {
+        
+        vc.view.addSubview(bloodtypeSegmentedControl)
+        // ｙ軸
+        bloodtypeSegmentedControl.topAnchor.constraint(equalTo: vc.tableView.bottomAnchor,constant: 40).isActive = true
+       //　x軸
+        bloodtypeSegmentedControl.leftAnchor.constraint(equalTo: vc.label.rightAnchor, constant: 40).isActive = true
+        
+    }
     
 }

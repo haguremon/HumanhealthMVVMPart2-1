@@ -11,7 +11,7 @@ class NewPatientsViewController: UIViewController {
     
     
     
-    @IBOutlet private weak var tableVIew: UITableView!
+    @IBOutlet  weak var tableView: UITableView!
     
     @IBOutlet private var nameTF: UITextField!
     
@@ -21,17 +21,21 @@ class NewPatientsViewController: UIViewController {
     
     @IBOutlet private var heightTF: UITextField!
     
+    @IBOutlet weak var label: UILabel!
+    
     private var registerid: Double = 0
     
     private var npvm = NewPatientsViewModel()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableVIew.delegate = self
-        tableVIew.dataSource = self
-        
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        npvm.setupUI(vc: self)
+    
     }
     
     
