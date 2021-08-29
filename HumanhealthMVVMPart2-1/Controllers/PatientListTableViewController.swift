@@ -7,9 +7,9 @@
 
 import UIKit
 
-class PatientLstTableViewController: UITableViewController {
-
-    var patients = [Patient]()
+class PatientListTableViewController: UITableViewController {
+    
+    var patientListViewModle = PatientListViewModle()
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -33,7 +33,8 @@ class PatientLstTableViewController: UITableViewController {
             switch result {
             case .success(let patient):
 
-                self.patients = patient
+                self.patientListViewModle.patients = patient.map(PatientViewModle.init)
+                
                 self.tableView.reloadData()
 
             case  .failure(let error):
@@ -54,13 +55,14 @@ class PatientLstTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return patients.count
+        return patientListViewModle.patients.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.text = patients[indexPath.row].name
+        let vm = patientListViewModle.forRowAtindex(at: indexPath.row)
+        cell.textLabel?.text = vm.name
+        cell.detailTextLabel?.text = vm.condition
 
         return cell
     }

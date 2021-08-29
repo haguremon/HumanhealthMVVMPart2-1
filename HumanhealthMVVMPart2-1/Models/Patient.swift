@@ -8,31 +8,32 @@
 import Foundation
 
 enum BloodType: String, Codable {
-    case a
-    case b
-    case o
-    case ab
+    case a = "A"
+    case b = "B"
+    case o = "O"
+    case ab = "AB"
 }
 
 enum ConditionType: String, Codable {
-    case verybad
-    case bad
-    case normal
-    case alittlebetter
-    case verygood
+    case verybad = "Very bad"
+    case bad = "Bad"
+    case normal = "Normal"
+    case alittlebetter = "A Little Better"
+    case verygood = "Very Good "
 }
 
 
 
 struct Patient: Codable {
     
+    let id: Double
     let name: String
     let email: String
     //ケースが大まかに言うと4種類なので列挙型で
     let bloodtype: BloodType
     let condition: ConditionType
     let weight: Double
-    let Height: Double
+    let height: Double
     
 }
 //extension Patient {
@@ -46,41 +47,5 @@ struct Patient: Codable {
 //        
 //        return Resource<[Patient]>(url: url)
 //        
-//    }()
-//}
-
-struct User: Codable {
-    
-    let login: String
-    
-    let id: Int
-    
-    let avatarurl: String
-    
-    let createdat: String
-    
-    let bio: String
-    
-    enum CodingKeys
-    : String, CodingKey {
-        case login
-        case id
-        case avatarurl = "avatar_url"
-        case createdat = "created_at"
-        case bio
-    }
-}
-//https://api.github.com/users/haguremon
-//extension User {
-//    //エンコードするための処理
-//    //Resource<[Order]>型で返すstaticプロパティを作成
-//    static var all: Resource<[User]> = {
-//
-//        guard let url = URL(string: "https://api.github.com/users/haguremon") else {
-//            fatalError("URL is incorrect ")
-//        }
-//
-//        return Resource<[User]>(url: url)
-//
 //    }()
 //}
