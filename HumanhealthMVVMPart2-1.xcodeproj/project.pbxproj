@@ -17,6 +17,7 @@
 		CFC07B0826D7A465000CAC23 /* localhost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07B0726D7A465000CAC23 /* localhost.swift */; };
 		CFC07B0A26D7A4D4000CAC23 /* PatientsVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */; };
 		CFFEF85526D8FCBB00F18C8A /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEF85426D8FCBB00F18C8A /* Patient.swift */; };
+		CFFEF87D26DB787500F18C8A /* NewPatientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEF87C26DB787500F18C8A /* NewPatientsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CFC07B0726D7A465000CAC23 /* localhost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localhost.swift; sourceTree = "<group>"; };
 		CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsVIewModel.swift; sourceTree = "<group>"; };
 		CFFEF85426D8FCBB00F18C8A /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		CFFEF87C26DB787500F18C8A /* NewPatientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatientsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CFC07B0926D7A4D4000CAC23 /* PatientsVIewModel.swift */,
+				CFFEF87C26DB787500F18C8A /* NewPatientsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				CFC07B0A26D7A4D4000CAC23 /* PatientsVIewModel.swift in Sources */,
 				CFC07B0026D79831000CAC23 /* PatientListTableViewController.swift in Sources */,
 				CFC07AEC26D79781000CAC23 /* AppDelegate.swift in Sources */,
+				CFFEF87D26DB787500F18C8A /* NewPatientsViewModel.swift in Sources */,
 				CFC07AEE26D79781000CAC23 /* SceneDelegate.swift in Sources */,
 				CFFEF85526D8FCBB00F18C8A /* Patient.swift in Sources */,
 				CFC07B0326D79AD6000CAC23 /* NewPatientsViewController.swift in Sources */,

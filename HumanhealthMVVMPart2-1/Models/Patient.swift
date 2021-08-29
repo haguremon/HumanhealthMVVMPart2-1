@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum BloodType: String, Codable {
+enum BloodType: String, Codable, CaseIterable {
     case a = "A"
     case b = "B"
     case o = "O"
     case ab = "AB"
 }
 
-enum ConditionType: String, Codable {
+enum ConditionType: String, Codable, CaseIterable {
     case verybad = "Very bad"
     case bad = "Bad"
     case normal = "Normal"
