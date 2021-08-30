@@ -35,11 +35,12 @@ class NewPatientsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         npvm.setupUI(vc: self)
-    
+        registerid = UserDefaults.standard.double(forKey: "id")
     }
     
     
     @IBAction private func registerButton() {
+        let vc = storyboard?.instantiateViewController(identifier: "vc") as! PatientListTableViewController
         
         guard let name = nameTF.text, !name.isEmpty ,
               let email = emailTF.text, !email.isEmpty ,
@@ -50,47 +51,73 @@ class NewPatientsViewController: UIViewController {
             print("test")
             return
         }
-        
-        
-        
-        
-        npvm.id = registerid + 1
+       
+        registerid += 1
+        npvm.id = registerid
         npvm.name = name
         npvm.email = email
         npvm.weight = weight
         npvm.height = height
         npvm.selectedBloodType = selectedSize
         npvm.selectedCondition = npvm.conditions[indexPath.row]
+        
+        UserDefaults.standard.set(registerid, forKey: "id")
+             
+        LocalHost().load(resource: Patient.create(self.npvm)) { [ weak self ] result in
+            switch result {
+            
+            case .success(let patient):
+            
+            print(patient)
+                vc.patientListViewModle.patients.append(PatientViewModle(patient: patient!))
+                DispatchQueue.main.async {
+                    vc.tableView.insertRows(at: [IndexPath.init(row: vc.patientListViewModle.patients.count - 1, section: 0)], with: .automatic)
+                    vc.tableView.reloadData()
+                }
+                self?.present(vc, animated: true, completion: nil)
+            
+            case .failure(let error):
+               print("aaaaaaaaaaaaa")
+                print(error)
+            
+            }
+        }
+    
     
     }
     
-    
-    
-    
-    
 }
+
 extension NewPatientsViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         npvm.conditions.count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         cell.textLabel?.text = npvm.conditions[indexPath.row]
         
         return cell
         
         
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    
     }
+    
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
+    
     }
-    
-    
     
     
 }

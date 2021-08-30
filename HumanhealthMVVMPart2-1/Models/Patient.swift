@@ -36,16 +36,71 @@ struct Patient: Codable {
     let height: Double
     
 }
-//extension Patient {
-//    //エンコードするための処理
-//    //Resource<[Order]>型で返すstaticプロパティを作成
-//    static var all: Resource<[Patient]> = {
-//        
-//        guard let url = URL(string: "http://localhost:3000/patients") else {
-//            fatalError("URL is incorrect ")
-//        }
-//        
-//        return Resource<[Patient]>(url: url)
-//        
-//    }()
-//}
+////エンコードとpostするための処理を下でやる
+extension Patient {
+    
+    //Resource<[Order]>型で返すstaticプロパティを作成
+    static var all: Resource<[Patient]> = {
+        
+        guard let url = URL(string: "http://localhost:3000/patients") else {
+            fatalError("URL is incorrect ")
+        }
+        
+        return Resource<[Patient]>(url: url)
+        
+    }()
+    
+    static func create(_ vm: NewPatientsViewModel) -> Resource<Patient?> {
+        
+        let patient = Patient(vm)
+        
+        guard let url = URL(string: "http://localhost:3000/patients") else {
+            fatalError("url mis")
+            
+        }
+        guard let body = try? JSONEncoder().encode(patient) else {
+          
+            fatalError("The format could not be changed ")
+        }
+        
+        var resource = Resource<Patient?>(url: url)
+        print(body)
+        resource.httpMethod = HttpMethod.post
+        resource.body = body
+    
+        return resource
+    }
+
+}
+
+
+
+//1　エンコードするデータの入ったPatientを作る
+
+extension Patient {
+    
+    
+    
+    init?(_ vm: NewPatientsViewModel) {
+        guard let id = vm.id,
+              let name = vm.name,
+              let email = vm.email,
+              let bloodtypes = BloodType(rawValue: vm.selectedBloodType!),
+             
+              let conditions = ConditionType(rawValue: vm.selectedCondition!),
+              let  weight = vm.weight,
+              let  height = vm.height  else {
+            
+         return nil
+        
+        }
+        self.id = id
+        self.name = name
+        self.email = email
+        self.bloodtype = bloodtypes
+        self.condition = conditions
+        self.weight = weight
+        self.height = height
+    }
+}
+

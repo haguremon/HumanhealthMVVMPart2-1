@@ -99,7 +99,7 @@
                     <navigationItem key="navigationItem" title="Personal Health Assessment Form　" id="1kN-1D-DzA">
                         <barButtonItem key="rightBarButtonItem" title="register" id="nv8-nZ-VQn">
                             <connections>
-                                <action selector="register" destination="BYZ-38-t0r" id="MaE-MO-kMh"/>
+                                <action selector="registerButton" destination="BYZ-38-t0r" id="6RW-IU-8my"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -119,7 +119,7 @@
         <!--Health check list-->
         <scene sceneID="Njq-xM-uaT">
             <objects>
-                <tableViewController id="DFC-BU-hH9" customClass="PatientListTableViewController" customModule="HumanhealthMVVMPart2_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="vc" id="DFC-BU-hH9" customClass="PatientListTableViewController" customModule="HumanhealthMVVMPart2_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mwp-FI-1lz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

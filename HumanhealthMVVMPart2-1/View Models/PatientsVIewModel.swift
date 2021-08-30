@@ -16,12 +16,12 @@ struct PatientListViewModle {
     init() {
         
         self.patients = [PatientViewModle]()
-    
+        
     }
 }
 extension PatientListViewModle {
     
-  
+    
     
     func forRowAtindex( at index: Int) ->  PatientViewModle {
         
@@ -44,7 +44,7 @@ extension PatientListViewModle {
 struct PatientViewModle {
     
     let patient: Patient
-
+    
 }
 extension PatientViewModle {
     
@@ -83,9 +83,9 @@ extension PatientViewModle {
         
         return patient.height
     }
-
-
-
+    
+    
+    
 }
 //"id": 1,
 //"name": "iwasaki",

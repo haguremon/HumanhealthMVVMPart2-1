@@ -12,12 +12,12 @@ enum NetWorkError: Error {
     case domainError
     case urlError
 }
-
+//通信プロコルの設定
 enum HttpMethod: String {
-
+    
     case get = "GET"
     case post = "POST"
-
+    
 }
 struct Resource<T: Codable> {
     var url: URL
@@ -26,57 +26,54 @@ struct Resource<T: Codable> {
     var body: Data? = nil
 }
 
-//extension Resource {
-//
-//    init(url: URL) {
-//
-//        self.url = url
-//    }
-//}
-    struct LocalHost {
-        
-        func load<T>(resource: Resource<T>, completion: @escaping (Result<T,NetWorkError>) -> Void) {
-            
-//            request.httpMethod = resource.httpMethod.rawValue
-//            request.httpBody = resource.body
-//            //json　でヘッダーが
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-       
-            URLSession.shared.dataTask(with: resource.url) { data, response, error in
-                guard let data = data,
-//                      let response = response as? HTTPURLResponse ,
-//                      response.statusCode == 304,
-                      error == nil else {
-                    
-                    completion(.failure(.domainError))
-                    return
-                    
-                }
-                print(data)
-            
-                let patient = try? JSONDecoder().decode(T.self, from: data)
-                
-               //print(patient)
-                if let patient = patient {
-                    
-                    DispatchQueue.main.async {
-                        completion(.success(patient))
-                    }
-                   
-                  
-                }
-                else {
-                print("test")
-                    completion(.failure(.decodingError))
-                }
-            }
-            .resume()
+extension Resource {
+
+    init(url: URL) {
+
+        self.url = url
+    }
+}
+struct LocalHost {
     
+    func load<T>(resource: Resource<T>, completion: @escaping (Result<T,NetWorkError>) -> Void) {
+        var request = URLRequest(url: resource.url)
+                    request.httpMethod = resource.httpMethod.rawValue
+                    request.httpBody = resource.body
+                    //json　でヘッダーが
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data,
+                  error == nil else {
+                
+                completion(.failure(.domainError))
+                return
+                
+            }
+            print(data)
             
+            let patient = try? JSONDecoder().decode(T.self, from: data)
             
+            //print(patient)
+            if let patient = patient {
+                
+                DispatchQueue.main.async {
+                    completion(.success(patient))
+                }
+                
+                
+            }
+            else {
+                completion(.failure(.decodingError))
+            }
         }
+        .resume()
+        
+        
         
     }
     
-    
+}
+
+
 
