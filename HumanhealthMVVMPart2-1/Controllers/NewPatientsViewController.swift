@@ -13,13 +13,13 @@ class NewPatientsViewController: UIViewController {
     
     @IBOutlet  weak var tableView: UITableView!
     
-    @IBOutlet private var nameTF: UITextField!
+    @IBOutlet weak var nameTF: UITextField!
     
-    @IBOutlet private var emailTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
     
-    @IBOutlet private var weightTF: UITextField!
+    @IBOutlet weak var weightTF: UITextField!
     
-    @IBOutlet private var heightTF: UITextField!
+    @IBOutlet weak var heightTF: UITextField!
     
     @IBOutlet weak var label: UILabel!
     
@@ -39,13 +39,29 @@ class NewPatientsViewController: UIViewController {
     }
     
     
-    @IBAction private func register() {
+    @IBAction private func registerButton() {
         
-        registerid += 1
+        guard let name = nameTF.text, !name.isEmpty ,
+              let email = emailTF.text, !email.isEmpty ,
+              let weight = Double(weightTF.text ?? ""), weight > 0 ,
+              let height = Double(heightTF.text ?? ""), height > 0 ,
+              let indexPath = tableView.indexPathForSelectedRow ,
+              let selectedSize = npvm.bloodTypeSegmentedControl.titleForSegment(at: npvm.bloodTypeSegmentedControl.selectedSegmentIndex) else {
+            print("test")
+            return
+        }
         
         
         
         
+        npvm.id = registerid + 1
+        npvm.name = name
+        npvm.email = email
+        npvm.weight = weight
+        npvm.height = height
+        npvm.selectedBloodType = selectedSize
+        npvm.selectedCondition = npvm.conditions[indexPath.row]
+    
     }
     
     
@@ -66,6 +82,14 @@ extension NewPatientsViewController: UITableViewDelegate, UITableViewDataSource 
         
         
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
+    }
+    
     
     
     
