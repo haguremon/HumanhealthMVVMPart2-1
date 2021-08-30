@@ -36,7 +36,20 @@ class NewPatientsViewController: UIViewController {
         tableView.dataSource = self
         npvm.setupUI(vc: self)
         registerid = UserDefaults.standard.double(forKey: "id")
+        let backButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(test))
+        navigationItem.leftBarButtonItem = backButton
     }
+    @objc func test(){
+        let vc = storyboard?.instantiateViewController(identifier: "vc") as! PatientListTableViewController
+        
+        DispatchQueue.main.async {
+            vc.tableView.reloadData()
+        }
+        navigationController?.pushViewController(vc, animated: true)
+        
+     
+    }
+    
     
     
     @IBAction private func registerButton() {
@@ -48,7 +61,6 @@ class NewPatientsViewController: UIViewController {
               let height = Double(heightTF.text ?? ""), height > 0 ,
               let indexPath = tableView.indexPathForSelectedRow ,
               let selectedSize = npvm.bloodTypeSegmentedControl.titleForSegment(at: npvm.bloodTypeSegmentedControl.selectedSegmentIndex) else {
-            print("test")
             return
         }
        
@@ -68,13 +80,11 @@ class NewPatientsViewController: UIViewController {
             
             case .success(let patient):
             
-            print(patient)
                 vc.patientListViewModle.patients.append(PatientViewModle(patient: patient!))
                 DispatchQueue.main.async {
-                    vc.tableView.insertRows(at: [IndexPath.init(row: vc.patientListViewModle.patients.count - 1, section: 0)], with: .automatic)
                     vc.tableView.reloadData()
                 }
-                self?.present(vc, animated: true, completion: nil)
+                self?.navigationController?.pushViewController(vc, animated: true)
             
             case .failure(let error):
                print("aaaaaaaaaaaaa")
